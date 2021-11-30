@@ -203,9 +203,52 @@ $ git commit --amend
 These are two commands that have helped me keep my Git history clean more times than I can count.
 
 ## Wait, what are branches?
+Typically, you will have a team where multiple people are working on different features concurrently. Similarly, you will have different versions of the application running at a time. This can usually be seen most evidently with a `production`, `staging` and `development` version of a system. So how do we manage all of these different streams of development? Git has the answer - `branches`!
 
-## Pushing code to remotes
+Earlier you may have noticed that there have been multiple references to the word `main` across our commands. In fact, we ran a command (see the `Initializing a repository` section) earlier that would set the default of all newly initialized repos to be `main`. In this case, `main` is a branch! It is the default that is considered to be the most stable version of your project. How can we confirm this? With a command, of course!
 
-## Creating pull requests
+```shell
+$ git branch
+```
 
-## Tips and tricks
+This will pull up an editor that displays all of your current branches abd you should see `main` here. To exit out of this screen, simply hit the `q` key.
+
+### When to use branches
+
+Let's enter a new scenario. Say you are working with your group at a `hackathon` and have gotten a very basic version of your project completed. From here you can begin working on your nice-to-haves which you have decided to divvy up evenly. Your task is to add a information to the `example.yaml` about various colors. 
+
+In this scenario, it makes sense to go ahead and make a `branch` for your change. This is ideal as it will let us compare difference to whatever other changes are going into `main` before our change. The group is thus enabled to work asynchrounously from each other easily without fear of stepping on each other's toes (Git has conflict protection we will go over soon).
+
+Adding a new branch is simple.
+
+```shell
+$ git checkout -b my-new-branch
+```
+
+This will both create and switch to the new branch. You can also create the branch without switching to it.
+
+```shell
+$ git branch my-new-branch
+```
+
+We can easily swap back and fourth between branches with the `checkout command`
+
+```shell
+$ git checkout main
+$ git checkout my-new-branch
+```
+
+We can also confirm which branches exist and which one we are currently on with the branch command.
+
+### Git flow
+When working with multiple developers on one project, the branches on that project can easily begin to get out of hand. There are many many different opinions about how to solve this. One very common one is a framework referred to as `git flow`. This is where you have branches for `main`, `develop`, and `feature-1`, `feature-2`, etc. In this methodology, `main` is considered to be the most stable and available version of the appliction, `develop` contains new and upcoming features and lastly `feature` branches contain new and upcoming features. 
+
+Understanding this is most easily done when looking at a diagram, so lets look at this really good one from Atlassian. 
+
+![](https://wac-cdn.atlassian.com/dam/jcr:34c86360-8dea-4be4-92f7-6597d4d5bfae/02%20Feature%20branches.svg?cdnVersion=102)
+
+There is a lot going on here, so let's break it down. If you look at the `light blue` lane you can notice that each is circle is pointing to a version of `main`. This is also done for the `purple` and `feature` lanes as well to represent `develop` and `feature` respectively. The main thing to take a way here is how each lane interacts with each other. `main` does not merge into another lane - it is the one that each other lane eventually merges into. Ultimately, `git flow` is seeking to define a single source of truth for the application and does so by minimizing the amount of developer toes stepped on via branches.
+
+If you are trying to get your project done quickly (in a hackathon setting) this does not always make sense to follow. You will want to be moving as quickly as possible to get your project done in the short amount of time. However, in virtually any scenario you will want to use some form of branching to make sure that you and another developer are not creating conflicts with the other's work.
+
+Take a look at [this tutorial by Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=The%20overall%20flow%20of%20Gitflow,branch%20is%20created%20from%20main&text=When%20a%20feature%20is%20complete%20it%20is%20merged%20into%20the,branch%20is%20created%20from%20main) for more information on this topic
