@@ -78,7 +78,15 @@ I've found that the easiest way to get a new project started in GitHub is to cre
 
 Let's go through the process of creating a fork of this repository now.
 
-First, make sure you are on this project's GitHub repository INSERT LINK. Once there, 
+First, make sure you are on this project's [GitHub repository](https://github.com/tylerslaton/git-tutorial). Once there, look in the top right for the "fork" button as seen here:
+
+![](https://i.imgur.com/3PfDNdf.png)
+
+Upon clicking that button, follow the steps to create your very own fork (copy) of this project's repository! From here, we are going to take this remote code and bring it to our local machine. To do this, click on the "code" drop down box seen in figure 2, click HTTPs ([or SSH if you would like to set that up](https://docs.github.com/en/authentication/connecting-to-github-with-ssh), hint: you will likely need to at some point) and then copy the command listed via the copy icon.
+
+![](https://i.imgur.com/83avPGR.png)
+
+From here, we just need to paste that command into our terminal that is located in a folder that we want to clone this project into. We're now ready to start making some changes!
 
 ## Adding code
 There are three main stages of code changes in Git:
@@ -90,3 +98,4 @@ There are three main stages of code changes in Git:
 *(If you're confused by what a commit is, checkout the commit section here)*
 
 Let's go ahead and make a change to the `example.yaml` in our current repository (if you pulled this code locally).
+
